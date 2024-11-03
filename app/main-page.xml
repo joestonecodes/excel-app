@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
+    <ActionBar title="Excel Sheet Viewer" class="action-bar" />
+    
+    <GridLayout rows="auto, *, auto">
+        <Button text="Upload Excel File" tap="onUploadTap" class="btn btn-primary m-b-20" row="0" />
+        
+        <ListView items="{{ sheets }}" class="list-group" row="1" itemTap="onSheetTap">
+            <ListView.itemTemplate>
+                <GridLayout columns="*, auto, auto" class="list-group-item p-10">
+                    <Label text="{{ name }}" col="0" class="text-primary" textWrap="true" />
+                    <Button text="🎲" tap="{{ $parent.onRandomTap }}" col="1" class="btn btn-outline w-15 m-r-10" />
+                    <Button text="❌" tap="{{ $parent.onDeleteTap }}" col="2" class="btn btn-outline w-15" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <StackLayout row="2" class="m-t-20 p-10" visibility="{{ selectedPair ? 'visible' : 'collapsed' }}">
+            <Label text="Random Key-Value Pair" class="h3" />
+            <Label text="{{ selectedPair.key }}" class="text-primary" textWrap="true" />
+            <Label text="{{ selectedPair.value }}" class="text-muted" textWrap="true" />
+        </StackLayout>
+    </GridLayout>
+</Page>
